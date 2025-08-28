@@ -38,8 +38,9 @@ img, video {
   max-width: 100%;
   border-radius: 10px;
 }
+
 .emoji-img {
-  width: 24px;   /* largeur en pixels */
-  height: 24px;  /* hauteur en pixels */
+  width: 30px;   /* largeur en pixels */
+  height: 30px;  /* hauteur en pixels */
   vertical-align: middle; /* aligne bien avec le texte */
 }

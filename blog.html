@@ -5,18 +5,25 @@
   <title>Nos moments 💕</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<script>
+  if (sessionStorage.getItem("auth") !== "ok") {
+    window.location.replace("index.html");
+  }
+</script>
+
 <body>
   <div class="container">
     <h1>Nos souvenirs 💖</h1>
     <p>Bienvenue dans notre petit coin secret !</p>
 
     <h2>📸 Photos</h2>
-    <img src="https://via.placeholder.com/400" alt="Photo 1">
-    <img src="https://via.placeholder.com/400" alt="Photo 2">
+    <img src="I.png" alt="Photo 1" type="img">
+    <img src="love.png" alt="Photo 2" type="img">
+    <img src="U.png" alt="Photo 3" type="img">
 
     <h2>🎥 Vidéos</h2>
     <video controls width="400">
-      <source src="video.mp4" type="video/mp4">
+      <source src="strip.MOV" type="video/mp4">
       Ton navigateur ne supporte pas la vidéo.
     </video>
 

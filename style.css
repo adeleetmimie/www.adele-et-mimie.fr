@@ -1,46 +1,137 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f9f0f9;
-  text-align: center;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg, #ffe4ec, #f0f7ff);
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.container {
-  max-width: 600px;
-  margin: 50px auto;
+.welcome-container {
+  text-align: center;
   background: white;
-  padding: 20px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+  max-width: 700px;
+}
+
+.banner {
+  width: 100%;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #ff4f81;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #444;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.login-box {
+  margin-top: 15px;
 }
 
 input, button {
   padding: 10px;
-  margin-top: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
 
+input {
+  width: 60%;
+  margin-right: 10px;
+}
+
 button {
-  background: #ff69b4;
+  background: #ff4f81;
   color: white;
   cursor: pointer;
   border: none;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #ff1493;
+  background: #e03e70;
 }
 
-img, video {
-  margin: 10px;
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.gallery img {
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.video {
   max-width: 100%;
   border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+}
+
+.logout {
+  margin-top: 20px;
+}
+
+.logout-btn {
+  display: inline-block;
+  background: #ff4f81;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #e03e70;
 }
 
 .emoji-img {
   width: 30px;   /* largeur en pixels */
   height: 30px;  /* hauteur en pixels */
   vertical-align: middle; /* aligne bien avec le texte */
+}
+#video-lock {
+  margin: 20px 0;
+}
+
+#video-lock input {
+  padding: 8px;
+  width: 60px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+#video-lock button {
+  padding: 8px 15px;
+  background: #ff4f81;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#video-lock button:hover {
+  background: #e03e70;
 }

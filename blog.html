@@ -2,32 +2,57 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Nos moments 💕</title>
+  <title>Adèle Titane 💕</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<script>
-  if (sessionStorage.getItem("auth") !== "ok") {
-    window.location.replace("index.html");
-  }
-</script>
 
+  <!-- Protection par mot de passe -->
+  <script>
+    if (sessionStorage.getItem("auth") !== "ok") {
+      window.location.replace("index.html");
+    }
+
+    function checkVideoCode() {
+      const code = document.getElementById("videoCode").value.toUpperCase();
+      if (code === "JTM") { // 🔑 change ici ton code secret à 3 lettres
+        document.getElementById("video-section").style.display = "block";
+        document.getElementById("video-lock").style.display = "none";
+      } else {
+        alert("Code incorrect !");
+      }
+    }
+  </script>
+</head>
 <body>
   <div class="container">
-    <h1>💖</h1>
-    <p>Bienvenue dans notre petit coin secret !</p>
+    <h1>💖  💖</h1>
+    <p>Bienvenue dans notre petit coin secret ✨</p>
 
     <h2>📸 Photos</h2>
-    <img src="I.png" alt="Photo 1" class="img">
-    <img src="love.png" alt="Photo 2" class="img">
-    <img src="U.png" alt="Photo 3" class="img">
+    <div class="gallery">
+      <img src="I.png" alt="Photo 1">
+      <img src="love.png" alt="Photo 2">
+      <img src="U.png" alt="Photo 3">
+    </div>
 
-    <h2>🎥 Vidéos</h2>
-    <video controls width="400">
-      <source src="strip.mp4" type="video/mp4">
-      Ton navigateur ne supporte pas la vidéo.
-    </video>
+    <h2>🎥 Vidéo</h2>
+    <!-- Zone de saisie du code -->
+    <div id="video-lock">
+      <p>Entre le code secret pour voir la vidéo :</p>
+      <input type="text" id="videoCode" maxlength="3" placeholder="---">
+      <button onclick="checkVideoCode()">Débloquer</button>
+    </div>
 
-    <p><a href="index.html">🔒 Déconnexion</a></p>
+    <!-- Zone vidéo (cachée au départ) -->
+    <div id="video-section" style="display:none;">
+      <video controls class="video">
+        <source src="strip.mp4" type="video/mp4">
+        Ton navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+
+    <div class="logout">
+      <a href="index.html" class="logout-btn">🔒 Déconnexion</a>
+    </div>
   </div>
 </body>
 </html>

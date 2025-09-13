@@ -1,128 +1,196 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Newsletter — Bilan trimestriel 💌</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Bilan Trimestriel — Relation & Indicateurs</title>
+  <link rel="stylesheet" href="style.css" />
   <script>
-    // Protège l'accès (même logique que le blog)
+    // Accès protégé (même logique que blog.html)
     if (sessionStorage.getItem("auth") !== "ok") {
       window.location.replace("index.html");
     }
-
-    // Remplissage automatique de la période (ex: T3 2025)
+    // Remplir période automatiquement (ex: T3 2025)
     document.addEventListener("DOMContentLoaded", () => {
       const d = new Date();
       const year = d.getFullYear();
-      const month = d.getMonth(); // 0..11
-      const quarter = Math.floor(month / 3) + 1; // 1..4
-      document.getElementById("period").textContent = `T${quarter} ${year}`;
-      document.getElementById("dateGen").textContent = d.toLocaleDateString("fr-FR");
+      const q = Math.floor(d.getMonth() / 3) + 1;
+      document.getElementById("period").textContent = `T${q} ${year}`;
+      document.getElementById("generated").textContent = d.toLocaleDateString("fr-FR");
     });
-
-    // (Optionnel) bouton imprimer en PDF
-    function printPDF() {
-      window.print();
-    }
+    function printPDF(){ window.print(); }
   </script>
 </head>
 <body>
-  <div class="newsletter">
-    <header class="nl-header">
-      <div class="nl-kicker">Notre newsletter privée</div>
-      <h1>Bilan trimestriel <span id="period"></span> 💞</h1>
-      <p class="nl-meta">Généré le <span id="dateGen"></span> — réservé à nous deux</p>
-      <nav class="nl-nav">
-        <a href="blog.html">← Retour aux souvenirs</a>
-        <button class="btn" onclick="printPDF()">📄 Télécharger en PDF</button>
-      </nav>
+  <div class="report">
+    <!-- En-tête -->
+    <header class="report-header">
+      <div class="brand">
+        <!-- Petit “logo” minimaliste : remplace src si tu as un fichier -->
+        <img src="coeur.png" alt="Logo" class="brand-logo">
+        <div class="brand-meta">
+          <h1>Bilan Trimestriel — Relation</h1>
+          <p class="subtitle">Période : <span id="period"></span> • Généré le <span id="generated"></span></p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="blog.html" class="btn-secondary">← Retour</a>
+        <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
+      </div>
     </header>
 
-    <!-- Bloc "chiffres" façon magazine -->
-    <section class="nl-stats">
-      <div class="nl-stat">
-        <div class="nl-stat-number">42</div>
-        <div class="nl-stat-label">Cafés partagés</div>
-      </div>
-      <div class="nl-stat">
-        <div class="nl-stat-number">6</div>
-        <div class="nl-stat-label">Balades main dans la main</div>
-      </div>
-      <div class="nl-stat">
-        <div class="nl-stat-number">3</div>
-        <div class="nl-stat-label">Soirées film & plaid</div>
-      </div>
-      <div class="nl-stat">
-        <div class="nl-stat-number">∞</div>
-        <div class="nl-stat-label">Sourires volés</div>
-      </div>
-    </section>
+    <!-- Sommaire -->
+    <nav class="toc">
+      <strong>Sommaire</strong>
+      <ol>
+        <li><a href="#exec">1. Synthèse Exécutive</a></li>
+        <li><a href="#kpis">2. Indicateurs Clés</a></li>
+        <li><a href="#achievements">3. Réalisations & Moments Forts</a></li>
+        <li><a href="#risks">4. Risques & Plans d’Action</a></li>
+        <li><a href="#outlook">5. Perspectives T+1</a></li>
+      </ol>
+    </nav>
 
-    <!-- Édito -->
-    <section class="nl-editorial">
-      <h2>Édito 💌</h2>
+    <!-- 1. Synthèse -->
+    <section id="exec" class="section">
+      <h2>1. Synthèse Exécutive</h2>
       <p>
-        Ce trimestre, on a continué d’écrire notre petite histoire :
-        des fous rires, des imprévus, et surtout des moments simples
-        qui rendent tout plus doux. Merci d’être toi.
+        Sur la période <span id="period"></span>, notre relation affiche des fondamentaux solides :
+        communication renforcée, moments qualitatifs récurrents et alignement stratégique sur les objectifs
+        “bien-être & complicité”. Les indicateurs avancés (temps de qualité, rires, câlins) confirment la dynamique positive.
       </p>
     </section>
 
-    <!-- Timeline / temps forts -->
-    <section class="nl-timeline">
-      <h2>Moments forts</h2>
-      <div class="nl-events">
-        <article class="nl-event">
-          <h3>🌅 Lever de soleil à la plage</h3>
-          <p>Réveil tôt, thermos de thé, et une lumière dorée parfaite pour nos photos.</p>
-        </article>
-        <article class="nl-event">
-          <h3>🍝 Dîner fait maison</h3>
-          <p>Notre meilleure recette de pâtes à ce jour, validée à 100%.</p>
-        </article>
-        <article class="nl-event">
-          <h3>🎶 Concert improvisé</h3>
-          <p>Dans le salon, playlist préférée, et un slow volé entre deux refrains.</p>
-        </article>
+    <!-- 2. KPIs -->
+    <section id="kpis" class="section">
+      <h2>2. Indicateurs Clés (KPIs)</h2>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-title">Rires partagés</div>
+          <div class="kpi-value">128</div>
+          <div class="kpi-foot">+12% vs T-1</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Moments qualité (≥30min)</div>
+          <div class="kpi-value">22</div>
+          <div class="kpi-foot">Objectif: 20</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Taux de câlins/jour</div>
+          <div class="kpi-value">2.4</div>
+          <div class="kpi-foot">Stable</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Conflits majeurs</div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-foot">N/A</div>
+        </div>
       </div>
     </section>
 
-    <!-- Galerie du trimestre -->
-    <section class="nl-gallery">
-      <h2>Galerie du trimestre 📸</h2>
-      <div class="nl-grid">
-        <!-- Remplace les src par tes fichiers réels -->
-        <figure>
-          <img src="I.png" alt="Instant 1">
-          <figcaption>Instant 1</figcaption>
-        </figure>
-        <figure>
-          <img src="love.png" alt="Instant 2">
-          <figcaption>Instant 2</figcaption>
-        </figure>
-        <figure>
-          <img src="U.png" alt="Instant 3">
-          <figcaption>Instant 3</figcaption>
-        </figure>
-        <figure>
-          <img src="couple.jpg" alt="Instant 4">
-          <figcaption>Instant 4</figcaption>
-        </figure>
-        <!-- Ajoute autant de figures que tu veux -->
+    <!-- 3. Réalisations (points + 2–3 photos) -->
+    <section id="achievements" class="section">
+      <h2>3. Réalisations & Moments Forts</h2>
+
+      <!-- Point A -->
+      <article class="point">
+        <header class="point-head">
+          <h3>3.1 Week-end à la mer — “Projet Horizon”</h3>
+          <p class="point-meta">Objectif : déconnexion & recharge émotionnelle</p>
+        </header>
+        <div class="point-body">
+          <div class="point-text">
+            <ul class="bullets">
+              <li>Qualité du temps : excellente (lever de soleil + balade).</li>
+              <li>Apport émotionnel : sérénité & complicité.</li>
+              <li>Livrables : playlist, 60 photos, 2 vidéos.</li>
+            </ul>
+          </div>
+          <div class="point-gallery">
+            <!-- Remplace les src par tes fichiers -->
+            <figure><img src="couple.jpg" alt="Plage 1"><figcaption>Balade matinale</figcaption></figure>
+            <figure><img src="I.png" alt="Selfie"><figcaption>Selfie doré</figcaption></figure>
+            <figure><img src="love.png" alt="Détail"><figcaption>Détail coquillage</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- Point B -->
+      <article class="point">
+        <header class="point-head">
+          <h3>3.2 Dîner maison — “Opération Pasta Prime”</h3>
+          <p class="point-meta">Objectif : co-création & plaisir simple</p>
+        </header>
+        <div class="point-body">
+          <div class="point-text">
+            <ul class="bullets">
+              <li>Collaboration : fluide, fun, zéro friction.</li>
+              <li>Résultat : recette validée (NPS interne 10/10 😄).</li>
+              <li>Amélioration continue : sauce + herbes fraîches T+1.</li>
+            </ul>
+          </div>
+          <div class="point-gallery">
+            <figure><img src="U.png" alt="Préparation"><figcaption>Préparation</figcaption></figure>
+            <figure><img src="couple.jpg" alt="Dressage"><figcaption>Dressage</figcaption></figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- Point C -->
+      <article class="point">
+        <header class="point-head">
+          <h3>3.3 Soirée film & plaid — “Programme Cosy”</h3>
+          <p class="point-meta">Objectif : détente & proximité</p>
+        </header>
+        <div class="point-body">
+          <div class="point-text">
+            <ul class="bullets">
+              <li>Confort : optimal (setup plaid + boisson chaude).</li>
+              <li>Choix film : consensus rapide (3 min, record !).</li>
+              <li>Indice bonheur : très élevé.</li>
+            </ul>
+          </div>
+          <div class="point-gallery">
+            <figure><img src="love.png" alt="Salon"><figcaption>Ambiance salon</figcaption></figure>
+            <figure><img src="I.png" alt="Snack"><figcaption>Snack sucré</figcaption></figure>
+            <figure><img src="couple.jpg" alt="Selfie"><figcaption>Selfie final</figcaption></figure>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 4. Risques -->
+    <section id="risks" class="section">
+      <h2>4. Risques & Plans d’Action</h2>
+      <div class="risk-grid">
+        <div class="risk">
+          <div class="risk-title">Agenda chargé</div>
+          <div class="risk-level low">Faible</div>
+          <p class="risk-plan">Bloquer 2 créneaux fixes / semaine pour micro-moments (≥20 min).</p>
+        </div>
+        <div class="risk">
+          <div class="risk-title">Météo capricieuse</div>
+          <div class="risk-level med">Moyen</div>
+          <p class="risk-plan">Plan B intérieur : playlist + recette + jeu de société.</p>
+        </div>
+        <div class="risk">
+          <div class="risk-title">Fatigue</div>
+          <div class="risk-level low">Faible</div>
+          <p class="risk-plan">Routine sommeil douce + dîner léger les soirs de semaine.</p>
+        </div>
       </div>
     </section>
 
-    <!-- Mini “notes” / gratitude -->
-    <section class="nl-notes">
-      <h2>Nos petits mercis ✨</h2>
-      <ul>
-        <li>Merci pour les textos du matin.</li>
-        <li>Merci pour les câlins surprise.</li>
-        <li>Merci pour ta patience les jours chargés.</li>
+    <!-- 5. Perspectives -->
+    <section id="outlook" class="section">
+      <h2>5. Perspectives T+1</h2>
+      <ul class="bullets">
+        <li>“Projet Montagne” : randonnée & thermos cacao (photos attendues : 15–20).</li>
+        <li>Atelier cuisine : nouvelle recette → scoring commun.</li>
+        <li>Playlist “T+1” : 10 titres, test & sélection.</li>
       </ul>
     </section>
 
-    <footer class="nl-footer">
+    <footer class="report-footer">
       <a href="blog.html" class="btn-secondary">← Retour</a>
       <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
     </footer>

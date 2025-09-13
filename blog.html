@@ -7,15 +7,21 @@
 
   <!-- Protection accès global -->
   <script>
+    // Redirige vers l'accueil si pas authentifié
     if (sessionStorage.getItem("auth") !== "ok") {
       window.location.replace("index.html");
     }
+
+    // Déblocage vidéo par code
     function checkVideoCode() {
-      let code = document.getElementById("videoCode").value;
+      let code = document.getElementById("videoCode").value || "";
       code = code.replace(/\s+/g, "").toUpperCase(); // ignore espaces
-      if (code === "JTM") { // 🔑 ton code secret (3-6 lettres)
+      if (code === "JTM") { // 🔑 ton code (ex: LOVE)
         document.getElementById("video-section").style.display = "block";
-        document.getElementById("video-lock").style.display = "none";
+        document.getElementById("video-lock").style.display = "block"; // garde visible si tu veux
+        document.getElementById("video-lock").style.visibility = "hidden"; // OU cache le cadre proprement
+        document.getElementById("video-lock").style.height = "0";
+        document.getElementById("video-lock").style.margin = "0";
       } else {
         alert("Code incorrect !");
       }
@@ -24,7 +30,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>💖               💖</h1>
+    <!-- Titre avec mini image façon emoji -->
+    <h1>
+      Nos souvenirs
+    </h1>
+
     <p>Notre petit coin secret ✨</p>
 
     <h2>📸 Photos</h2>
@@ -35,11 +45,11 @@
     </div>
 
     <h2>🎥 Vidéo</h2>
-    <!-- Zone pour entrer le code -->
-    <div id="video-lock">
-      <p>Entre le code secret <img src="drapeau.png" alt="drapeau" class="emoji-img"> :</p>
+    <!-- Cadre code vidéo (forcé visible) -->
+    <div id="video-lock" style="display:block;">
+      <p>Entre le code secret <img src="drapeau.png" alt="france" class="emoji-img" :</p>
       <input type="text" id="videoCode" maxlength="6" placeholder="---">
-      <button onclick="checkVideoCode()">Débloquer</button>
+      <button type="button" onclick="checkVideoCode()">Débloquer</button>
     </div>
 
     <!-- Vidéo cachée au départ -->
@@ -60,4 +70,7 @@
   </div>
 </body>
 </html>
+
+
+
 

@@ -7,7 +7,7 @@
   <script>
     function checkPassword() {
       const password = document.getElementById("password").value;
-      if (password === "petitescargot") {  // 🔒 change ici ton mot de passe
+      if (password === "vendredi13") {  // 🔒 change ici ton mot de passe
        sessionStorage.setItem("auth","ok");
         window.location.href = "blog.html";
       } else {
@@ -19,9 +19,7 @@
 <body>
   <div class="container">
     <h1> Bienvenue </h1>
-    <p> <img src="ouverturefacile.png" alt="ouverturefacile" class="emoji-img"> 
-        Entrez le mot de passe du NIVEAU 5 
-        <img src="ouverturefacile.png" alt="ouverturefacile" class="emoji-img"> 
+    <p> Point de départ (comme un film )
     </p>
     <input type="password" id="password" placeholder="Mot de passe">
     <button onclick="checkPassword()">Entrer</button>

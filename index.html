@@ -1,28 +1,69 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Accès privé</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script>
-    function checkPassword() {
-      const password = document.getElementById("password").value;
-      if (password === "vendredi13") {  // 🔒 change ici ton mot de passe
-       sessionStorage.setItem("auth","ok");
-        window.location.href = "blog.html";
-      } else {
-        alert("Mot de passe incorrect !");
-      }
+    // === Paramètres à personnaliser ===
+   <script>
+  const PASSWORD = "vendredi13"; // ton mot de passe
+  const HINT_TEXT = "c'est aussi un film d'horreur";
+
+  function checkPassword() {
+    let input = document.getElementById("password").value;
+    // Nettoie les espaces (avant, après et même au milieu)
+    input = input.replace(/\s+/g, "");
+    if (input === PASSWORD.replace(/\s+/g, "")) {
+      sessionStorage.setItem("auth", "ok");
+      window.location.href = "blog.html";
+    } else {
+      alert("Mot de passe incorrect !");
     }
+  }
+
+  function toggleHint() {
+    const box = document.getElementById("hint-box");
+    box.style.display = (box.style.display === "block") ? "none" : "block";
+  }
+</script>
+
+    // Entrée clavier = valider
+    document.addEventListener("DOMContentLoaded", () => {
+      const field = document.getElementById("password");
+      field.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") checkPassword();
+      });
+    });
   </script>
 </head>
 <body>
-  <div class="container">
-    <h1> Bienvenue </h1>
-    <p> Point de départ (comme un film )
-    </p>
-    <input type="password" id="password" placeholder="Mot de passe">
-    <button onclick="checkPassword()">Entrer</button>
+  <div class="welcome-container">
+    <!-- Image bannière optionnelle -->
+    <img src="couple.jpg" alt="Notre photo" class="banner" />
+
+    <h1>
+      Bienvenue dans notre bulle
+      <img src="coeur.png" alt="💖" class="emoji-img">
+    </h1>
+
+    <p>Entre le mot de passe pour accéder à notre espace privé.</p>
+
+    <div class="login-box">
+      <input type="password" id="password" placeholder="Mot de passe" />
+      <button onclick="checkPassword()">Entrer</button>
+      <button class="btn-hint" type="button" onclick="toggleHint()">💡 Indice</button>
+    </div>
+
+    <div id="hint-box" class="hint-box" style="display:none;">
+      <strong>Indice :</strong> <span id="hint-text"></span>
+    </div>
+
+    <script>
+      // Injecte le texte d’indice (évite de le laisser en clair dans le HTML)
+      document.getElementById("hint-text").textContent = HINT_TEXT;
+    </script>
   </div>
 </body>
 </html>
+

@@ -383,3 +383,24 @@ button:hover {
   .header-actions, .toc a::after{ display:none !important; }
 }
 
+.btn-hint {
+  margin-left: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #f7f7fb;
+  cursor: pointer;
+}
+.btn-hint:hover {
+  background: #efeff6;
+}
+
+.hint-box {
+  margin-top: 12px;
+  background: #fffbe7;
+  border: 1px solid #f2e5a2;
+  color: #5b4e17;
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: none;
+}

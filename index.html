@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -6,48 +6,49 @@
   <link rel="stylesheet" href="style.css" />
   <script>
     // === Paramètres à personnaliser ===
-   <script>
-  const PASSWORD = "vendredi13"; // ton mot de passe
-  const HINT_TEXT = "c'est aussi un film d'horreur";
+    const PASSWORD = "vendredi13";               // 🔑 ton mot de passe
+    const HINT_TEXT = "c'est aussi un film d'horreur"; // 🔑 ton indice
 
-  function checkPassword() {
-    let input = document.getElementById("password").value;
-    // Nettoie les espaces (avant, après et même au milieu)
-    input = input.replace(/\s+/g, "");
-    if (input === PASSWORD.replace(/\s+/g, "")) {
-      sessionStorage.setItem("auth", "ok");
-      window.location.href = "blog.html";
-    } else {
-      alert("Mot de passe incorrect !");
+    function checkPassword() {
+      let input = document.getElementById("password").value;
+      // Supprime tous les espaces dans la saisie ET dans le mot de passe
+      input = input.replace(/\s+/g, "");
+      const cleanedPassword = PASSWORD.replace(/\s+/g, "");
+      if (input === cleanedPassword) {
+        sessionStorage.setItem("auth", "ok");
+        window.location.href = "blog.html";
+      } else {
+        alert("Mot de passe incorrect !");
+      }
     }
-  }
 
-  function toggleHint() {
-    const box = document.getElementById("hint-box");
-    box.style.display = (box.style.display === "block") ? "none" : "block";
-  }
-</script>
+    function toggleHint() {
+      const box = document.getElementById("hint-box");
+      box.style.display = (box.style.display === "block") ? "none" : "block";
+    }
 
-    // Entrée clavier = valider
     document.addEventListener("DOMContentLoaded", () => {
+      // Entrée clavier = valider
       const field = document.getElementById("password");
       field.addEventListener("keydown", (e) => {
         if (e.key === "Enter") checkPassword();
       });
+      // Texte d'indice injecté via JS
+      document.getElementById("hint-text").textContent = HINT_TEXT;
     });
   </script>
 </head>
 <body>
   <div class="welcome-container">
-    <!-- Image bannière optionnelle -->
-    <img src="couple.jpg" alt="Notre photo" class="banner" />
+    <!-- Image bannière (remplace 'couple.jpg' par la tienne) -->
+    <img src="sallex.png" alt="Notre photo" class="banner" />
 
     <h1>
-      Bienvenue dans notre bulle
-      <img src="coeur.png" alt="💖" class="emoji-img">
+      Bienvenue mon amour
+      <img src="coeur.png" alt="💖" class="emoji-img" />
     </h1>
 
-    <p>Entre le mot de passe pour accéder à notre espace privé.</p>
+    <p>le point de départ</p>
 
     <div class="login-box">
       <input type="password" id="password" placeholder="Mot de passe" />
@@ -58,11 +59,6 @@
     <div id="hint-box" class="hint-box" style="display:none;">
       <strong>Indice :</strong> <span id="hint-text"></span>
     </div>
-
-    <script>
-      // Injecte le texte d’indice (évite de le laisser en clair dans le HTML)
-      document.getElementById("hint-text").textContent = HINT_TEXT;
-    </script>
   </div>
 </body>
 </html>

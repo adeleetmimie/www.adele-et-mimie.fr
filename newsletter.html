@@ -5,11 +5,11 @@
   <title>Bilan Trimestriel — Relation & Indicateurs</title>
   <link rel="stylesheet" href="style.css" />
   <script>
-    // Accès protégé (même logique que blog.html)
+    // Accès protégé
     if (sessionStorage.getItem("auth") !== "ok") {
       window.location.replace("index.html");
     }
-    // Remplir période automatiquement (ex: T3 2025)
+    // Remplit période et date
     document.addEventListener("DOMContentLoaded", () => {
       const d = new Date();
       const year = d.getFullYear();
@@ -25,7 +25,6 @@
     <!-- En-tête -->
     <header class="report-header">
       <div class="brand">
-        <!-- Petit “logo” minimaliste : remplace src si tu as un fichier -->
         <img src="coeur.png" alt="Logo" class="brand-logo">
         <div class="brand-meta">
           <h1>Bilan Trimestriel — Relation</h1>
@@ -33,7 +32,7 @@
         </div>
       </div>
       <div class="header-actions">
-        <a href="blog.html" class="btn-secondary">← Retour</a>
+        <a href="blog.html" class="btn-secondary">← Retour au blog</a>
         <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
       </div>
     </header>
@@ -56,7 +55,7 @@
       <p>
         Sur la période <span id="period"></span>, notre relation affiche des fondamentaux solides :
         communication renforcée, moments qualitatifs récurrents et alignement stratégique sur les objectifs
-        “bien-être & complicité”. Les indicateurs avancés (temps de qualité, rires, câlins) confirment la dynamique positive.
+        “bien-être & complicité”. Les indicateurs avancés confirment la dynamique positive.
       </p>
     </section>
 
@@ -106,8 +105,7 @@
             </ul>
           </div>
           <div class="point-gallery">
-            <!-- Remplace les src par tes fichiers -->
-            <figure><img src="couple.jpg" alt="Plage 1"><figcaption>Balade matinale</figcaption></figure>
+            <figure><img src="couple.jpg" alt="Balade"><figcaption>Balade matinale</figcaption></figure>
             <figure><img src="I.png" alt="Selfie"><figcaption>Selfie doré</figcaption></figure>
             <figure><img src="love.png" alt="Détail"><figcaption>Détail coquillage</figcaption></figure>
           </div>
@@ -191,9 +189,10 @@
     </section>
 
     <footer class="report-footer">
-      <a href="blog.html" class="btn-secondary">← Retour</a>
+      <a href="blog.html" class="btn-secondary">← Retour au blog</a>
       <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
     </footer>
   </div>
 </body>
 </html>
+

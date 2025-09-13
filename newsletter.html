@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Newsletter — Bilan trimestriel 💌</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Protège l'accès (même logique que le blog)
+    if (sessionStorage.getItem("auth") !== "ok") {
+      window.location.replace("index.html");
+    }
+
+    // Remplissage automatique de la période (ex: T3 2025)
+    document.addEventListener("DOMContentLoaded", () => {
+      const d = new Date();
+      const year = d.getFullYear();
+      const month = d.getMonth(); // 0..11
+      const quarter = Math.floor(month / 3) + 1; // 1..4
+      document.getElementById("period").textContent = `T${quarter} ${year}`;
+      document.getElementById("dateGen").textContent = d.toLocaleDateString("fr-FR");
+    });
+
+    // (Optionnel) bouton imprimer en PDF
+    function printPDF() {
+      window.print();
+    }
+  </script>
+</head>
+<body>
+  <div class="newsletter">
+    <header class="nl-header">
+      <div class="nl-kicker">Notre newsletter privée</div>
+      <h1>Bilan trimestriel <span id="period"></span> 💞</h1>
+      <p class="nl-meta">Généré le <span id="dateGen"></span> — réservé à nous deux</p>
+      <nav class="nl-nav">
+        <a href="blog.html">← Retour aux souvenirs</a>
+        <button class="btn" onclick="printPDF()">📄 Télécharger en PDF</button>
+      </nav>
+    </header>
+
+    <!-- Bloc "chiffres" façon magazine -->
+    <section class="nl-stats">
+      <div class="nl-stat">
+        <div class="nl-stat-number">42</div>
+        <div class="nl-stat-label">Cafés partagés</div>
+      </div>
+      <div class="nl-stat">
+        <div class="nl-stat-number">6</div>
+        <div class="nl-stat-label">Balades main dans la main</div>
+      </div>
+      <div class="nl-stat">
+        <div class="nl-stat-number">3</div>
+        <div class="nl-stat-label">Soirées film & plaid</div>
+      </div>
+      <div class="nl-stat">
+        <div class="nl-stat-number">∞</div>
+        <div class="nl-stat-label">Sourires volés</div>
+      </div>
+    </section>
+
+    <!-- Édito -->
+    <section class="nl-editorial">
+      <h2>Édito 💌</h2>
+      <p>
+        Ce trimestre, on a continué d’écrire notre petite histoire :
+        des fous rires, des imprévus, et surtout des moments simples
+        qui rendent tout plus doux. Merci d’être toi.
+      </p>
+    </section>
+
+    <!-- Timeline / temps forts -->
+    <section class="nl-timeline">
+      <h2>Moments forts</h2>
+      <div class="nl-events">
+        <article class="nl-event">
+          <h3>🌅 Lever de soleil à la plage</h3>
+          <p>Réveil tôt, thermos de thé, et une lumière dorée parfaite pour nos photos.</p>
+        </article>
+        <article class="nl-event">
+          <h3>🍝 Dîner fait maison</h3>
+          <p>Notre meilleure recette de pâtes à ce jour, validée à 100%.</p>
+        </article>
+        <article class="nl-event">
+          <h3>🎶 Concert improvisé</h3>
+          <p>Dans le salon, playlist préférée, et un slow volé entre deux refrains.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Galerie du trimestre -->
+    <section class="nl-gallery">
+      <h2>Galerie du trimestre 📸</h2>
+      <div class="nl-grid">
+        <!-- Remplace les src par tes fichiers réels -->
+        <figure>
+          <img src="I.png" alt="Instant 1">
+          <figcaption>Instant 1</figcaption>
+        </figure>
+        <figure>
+          <img src="love.png" alt="Instant 2">
+          <figcaption>Instant 2</figcaption>
+        </figure>
+        <figure>
+          <img src="U.png" alt="Instant 3">
+          <figcaption>Instant 3</figcaption>
+        </figure>
+        <figure>
+          <img src="couple.jpg" alt="Instant 4">
+          <figcaption>Instant 4</figcaption>
+        </figure>
+        <!-- Ajoute autant de figures que tu veux -->
+      </div>
+    </section>
+
+    <!-- Mini “notes” / gratitude -->
+    <section class="nl-notes">
+      <h2>Nos petits mercis ✨</h2>
+      <ul>
+        <li>Merci pour les textos du matin.</li>
+        <li>Merci pour les câlins surprise.</li>
+        <li>Merci pour ta patience les jours chargés.</li>
+      </ul>
+    </section>
+
+    <footer class="nl-footer">
+      <a href="blog.html" class="btn-secondary">← Retour</a>
+      <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
+    </footer>
+  </div>
+</body>
+</html>

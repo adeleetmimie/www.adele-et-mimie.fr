@@ -4,22 +4,30 @@
   <meta charset="UTF-8" />
   <title>Bilan Trimestriel — Relation & Indicateurs</title>
   <link rel="stylesheet" href="style.css" />
+
   <script>
     // Accès protégé
     if (sessionStorage.getItem("auth") !== "ok") {
       window.location.replace("index.html");
     }
-    // Remplit période et date
-    document.addEventListener("DOMContentLoaded", () => {
-      const d = new Date();
-      const year = d.getFullYear();
-      const q = Math.floor(d.getMonth() / 3) + 1;
-      document.getElementById("period").textContent = `T${q} ${year}`;
-      document.getElementById("generated").textContent = d.toLocaleDateString("fr-FR");
-    });
+
     function printPDF(){ window.print(); }
+
+    function openQuarter(qId){
+      document.querySelectorAll(".quarter").forEach(el => el.style.display = "none");
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.getElementById(qId).style.display = "block";
+      document.querySelector(`[data-target="${qId}"]`).classList.add("active");
+      localStorage.setItem("lastQuarterTab", qId);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const last = localStorage.getItem("lastQuarterTab") || "q1"; // défaut T1
+      openQuarter(last);
+    });
   </script>
 </head>
+
 <body>
   <div class="report">
     <!-- En-tête -->
@@ -28,6 +36,7 @@
         <img src="logo1.png" alt="Logo" class="brand-logo">
         <div class="brand-meta">
           <h1>Bilan Trimestriel — Relation</h1>
+          <!-- On garde ta période fixe -->
           <p class="subtitle">Période : Notre 1er Trimestre • Généré le 13 septembre 2025</p>
         </div>
       </div>
@@ -37,187 +46,304 @@
       </div>
     </header>
 
-    <!-- Sommaire -->
-    <nav class="toc">
-      <strong>Sommaire</strong>
-      <ol>
-        <li><a href="#exec">1. Synthèse Exécutive</a></li>
-        <li><a href="#kpis">2. Indicateurs Clés</a></li>
-        <li><a href="#achievements">3. Réalisations & Moments Forts</a></li>
-        <li><a href="#risks">4. Risques & Plans d’Action</a></li>
-        <li><a href="#outlook">5. Perspectives T+1</a></li>
-      </ol>
-    </nav>
+    <!-- Onglets -->
+    <div class="tabs">
+      <button class="tab-btn" type="button" data-target="q1" onclick="openQuarter('q1')">T1</button>
+      <button class="tab-btn" type="button" data-target="q2" onclick="openQuarter('q2')">T2</button>
+    </div>
 
-    <!-- 1. Synthèse -->
-    <section id="exec" class="section">
-      <h2>1. Synthèse Exécutive</h2>
-      <p>
-        Sur la période du 1er Trimestre, notre relation affiche des fondamentaux solides :
-        communication claire et solide, moments qualitatifs récurrents et alignement stratégique sur les objectifs
-        “bien-être & complicité”. Les indicateurs avancés confirment une dynamique très positive. 
-        L'ensemble de l'expérience acquise lors de ce premier Trimestre laisse à penser une longue et prospère carrière dans notre entreprise.
-      </p>
+    <!-- =========================================================
+         ONGLET T1 — TON CONTENU (corrigé)
+         ========================================================= -->
+    <section id="q1" class="quarter">
+
+      <!-- Sommaire -->
+      <nav class="toc">
+        <strong>Sommaire</strong>
+        <ol>
+          <li><a href="#exec-q1">1. Synthèse Exécutive</a></li>
+          <li><a href="#kpis-q1">2. Indicateurs Clés</a></li>
+          <li><a href="#achievements-q1">3. Réalisations & Moments Forts</a></li>
+          <li><a href="#risks-q1">4. Risques & Plans d’Action</a></li>
+          <li><a href="#outlook-q1">5. Perspectives T+1</a></li>
+        </ol>
+      </nav>
+
+      <!-- 1. Synthèse -->
+      <section id="exec-q1" class="section">
+        <h2>1. Synthèse Exécutive</h2>
+        <p>
+          Sur la période du 1er Trimestre, notre relation affiche des fondamentaux solides :
+          communication claire et solide, moments qualitatifs récurrents et alignement stratégique sur les objectifs
+          “bien-être & complicité”. Les indicateurs avancés confirment une dynamique très positive.
+          L'ensemble de l'expérience acquise lors de ce premier Trimestre laisse à penser une longue et prospère carrière dans notre entreprise.
+        </p>
+      </section>
+
+      <!-- 2. KPIs -->
+      <section id="kpis-q1" class="section">
+        <h2>2. Indicateurs Clés (KPIs)</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-title">Rires partagés</div>
+            <div class="kpi-value">112 fois</div>
+            <div class="kpi-foot">+100% vs T-1</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">On a refait le monde</div>
+            <div class="kpi-value">528 fois</div>
+            <div class="kpi-foot">Belle perf.</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Moments câlins</div>
+            <div class="kpi-value">A++</div>
+            <div class="kpi-foot">Jamais assez</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Conflits</div>
+            <div class="kpi-value">0</div>
+            <div class="kpi-foot">Stable</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Réalisations -->
+      <section id="achievements-q1" class="section">
+        <h2>3. Réalisations & Moments Forts</h2>
+
+        <!-- Point A -->
+        <article class="point">
+          <header class="point-head">
+            <h3>3.1 Intégration d'équipe</h3>
+            <p class="point-meta">Objectif : découverte et intégration au groupe</p>
+          </header>
+          <div class="point-body">
+            <div class="point-text">
+              <ul class="bullets">
+                <li>Premier contact plutôt réussi.</li>
+                <li>Intégration dans le cercle familial en cours.</li>
+                <li>Cercle amical conquis comme un "pacha".</li>
+              </ul>
+            </div>
+            <div class="point-gallery">
+              <figure><img src="fabrikus1.png" alt="fabrikus1"><figcaption>Intégration Adèle</figcaption></figure>
+              <figure><img src="grotte.png" alt="grotte"><figcaption>Intégration Mimie</figcaption></figure>
+              <figure><img src="potes.png" alt="potes"><figcaption>Le Pacha et les potes ^^</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Point B -->
+        <article class="point">
+          <header class="point-head">
+            <h3>3.2 Le Couple — “Opération Séduction”</h3>
+            <p class="point-meta">Objectif : Bonheur et Plaisir</p>
+          </header>
+          <div class="point-body">
+            <div class="point-text">
+              <ul class="bullets">
+                <li>Entente générale : fluide, fun, sereine.</li>
+                <li>Présentation du couple : toujours la grande classe.</li>
+                <li>Intimité du couple : plaisir +++</li>
+              </ul>
+            </div>
+            <div class="point-gallery">
+              <figure><img src="lac2.png" alt="lac2"><figcaption>Trop la classe.</figcaption></figure>
+              <figure><img src="lookgrotte.png" alt="lookgrotte"><figcaption>Trop la classe quand même ^^</figcaption></figure>
+              <figure><img src="plage.png" alt="plage"><figcaption>On se comprend ;)</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Point C -->
+        <article class="point">
+          <header class="point-head">
+            <h3>3.3 Soirée at Home — “Programme Cosy”</h3>
+            <p class="point-meta">Objectif : détente & proximité</p>
+          </header>
+          <div class="point-body">
+            <div class="point-text">
+              <ul class="bullets">
+                <li>Confort : optimal (setup canapé/TV + super table basse).</li>
+                <li>Programme jeux régulier : parce qu'on kiffe.</li>
+                <li>Compagnie animale : 2 spécimens.</li>
+                <li>Indice bonheur : très élevé.</li>
+              </ul>
+            </div>
+            <div class="point-gallery">
+              <figure><img src="canap.png" alt="canap"><figcaption>Ambiance salon</figcaption></figure>
+              <figure><img src="jeux.png" alt="jeux"><figcaption>Soirée jeux</figcaption></figure>
+              <figure><img src="cook2.png" alt="cook2"><figcaption>Animal conquis</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Point D -->
+        <article class="point">
+          <header class="point-head">
+            <h3>3.4 Activité extérieure — “Du Fun du Fun et du Sexe”</h3>
+            <p class="point-meta">Objectif : détente & proximité</p>
+          </header>
+          <div class="point-body">
+            <div class="point-text">
+              <ul class="bullets">
+                <li>Découverte : nouvelle activité et nouveaux lieux.</li>
+                <li>Du fun, du fun, et du sexe : objectif tenu 😄</li>
+                <li>Indice bonheur : très élevé.</li>
+              </ul>
+            </div>
+            <div class="point-gallery">
+              <figure><img src="fouille.png" alt="fouille"><figcaption>La chasse aux trésors</figcaption></figure>
+              <figure><img src="hell.png" alt="hell"><figcaption>Avertissement !</figcaption></figure>
+              <figure><img src="jacouzzi.png" alt="jacouzzi"><figcaption>Lieu secret découvert</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- 4. Risques -->
+      <section id="risks-q1" class="section">
+        <h2>4. Risques & Plans d’Action</h2>
+        <div class="risk-grid">
+          <div class="risk">
+            <div class="risk-title">Agenda chargé</div>
+            <div class="risk-level low">Faible</div>
+            <p class="risk-plan">Profiter de chaque moment au maximum.</p>
+          </div>
+          <div class="risk">
+            <div class="risk-title">Météo capricieuse</div>
+            <div class="risk-level med">Moyen à faible</div>
+            <p class="risk-plan">Fini les grosses chaleurs, bientôt les plaids et l'orage en fond.</p>
+          </div>
+          <div class="risk">
+            <div class="risk-title">Ennemis</div>
+            <div class="risk-level low">Très très faible</div>
+            <p class="risk-plan">C'est toi et moi (+ enfants) contre le reste du monde.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Perspectives -->
+      <section id="outlook-q1" class="section">
+        <h2>5. Perspectives T+1</h2>
+        <ul class="bullets">
+          <li>“Projet Normandie” : organisation en cours (on peut mieux faire mais on s'en sort &lt;3).</li>
+          <li>“Projet Marathon” : bon ok c'est 1/10ème d'un marathon, la prochaine fois dit NON ^^.</li>
+          <li>“Projet X” : Adèle et Mimie toujours au rendez-vous !</li>
+        </ul>
+      </section>
+
+      <footer class="report-footer">
+        <a href="blog.html" class="btn-secondary">← Retour au blog</a>
+        <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
+      </footer>
+
     </section>
 
-    <!-- 2. KPIs -->
-    <section id="kpis" class="section">
-      <h2>2. Indicateurs Clés (KPIs)</h2>
-      <div class="kpis">
-        <div class="kpi">
-          <div class="kpi-title">Rires partagés</div>
-          <div class="kpi-value">112 fois</div>
-          <div class="kpi-foot">+100% vs T-1</div>
+    <!-- =========================================================
+         ONGLET T2 — À REMPLIR
+         ========================================================= -->
+    <section id="q2" class="quarter">
+
+      <nav class="toc">
+        <strong>Sommaire</strong>
+        <ol>
+          <li><a href="#exec-q2">1. Synthèse Exécutive</a></li>
+          <li><a href="#kpis-q2">2. Indicateurs Clés</a></li>
+          <li><a href="#achievements-q2">3. Réalisations & Moments Forts</a></li>
+          <li><a href="#risks-q2">4. Risques & Plans d’Action</a></li>
+          <li><a href="#outlook-q2">5. Perspectives T+1</a></li>
+        </ol>
+      </nav>
+
+      <section id="exec-q2" class="section">
+        <h2>1. Synthèse Exécutive</h2>
+        <p>
+          (À remplir) T2 : évolution, nouveaux projets, nouvelles routines, et indicateurs en hausse.
+        </p>
+      </section>
+
+      <section id="kpis-q2" class="section">
+        <h2>2. Indicateurs Clés (KPIs)</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="kpi-title">Rires partagés</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-foot">vs T1 : —</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">On a refait le monde</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-foot">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Moments câlins</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-foot">—</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-title">Conflits</div>
+            <div class="kpi-value">—</div>
+            <div class="kpi-foot">—</div>
+          </div>
         </div>
-        <div class="kpi">
-          <div class="kpi-title">on a refait le monde</div>
-          <div class="kpi-value">528 fois</div>
-          <div class="kpi-foot">belle perf.</div>
+      </section>
+
+      <section id="achievements-q2" class="section">
+        <h2>3. Réalisations & Moments Forts</h2>
+
+        <!-- Exemple de point T2 (duplique ce bloc) -->
+        <article class="point">
+          <header class="point-head">
+            <h3>3.1 (À remplir) — “Nom de projet”</h3>
+            <p class="point-meta">Objectif : …</p>
+          </header>
+          <div class="point-body">
+            <div class="point-text">
+              <ul class="bullets">
+                <li>(À remplir) …</li>
+                <li>(À remplir) …</li>
+                <li>(À remplir) …</li>
+              </ul>
+            </div>
+            <div class="point-gallery">
+              <figure><img src="photo_t2_1.png" alt="T2 photo 1"><figcaption>Photo 1</figcaption></figure>
+              <figure><img src="photo_t2_2.png" alt="T2 photo 2"><figcaption>Photo 2</figcaption></figure>
+              <figure><img src="photo_t2_3.png" alt="T2 photo 3"><figcaption>Photo 3</figcaption></figure>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <section id="risks-q2" class="section">
+        <h2>4. Risques & Plans d’Action</h2>
+        <div class="risk-grid">
+          <div class="risk">
+            <div class="risk-title">(À remplir) Exemple</div>
+            <div class="risk-level low">Faible</div>
+            <p class="risk-plan">(À remplir) …</p>
+          </div>
         </div>
-        <div class="kpi">
-          <div class="kpi-title">Môments câlins</div>
-          <div class="kpi-value">A++</div>
-          <div class="kpi-foot">Jamais assez</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-title">Conflits</div>
-          <div class="kpi-value">0</div>
-          <div class="kpi-foot">stable</div>
-        </div>
-      </div>
+      </section>
+
+      <section id="outlook-q2" class="section">
+        <h2>5. Perspectives T+1</h2>
+        <ul class="bullets">
+          <li>(À remplir) …</li>
+          <li>(À remplir) …</li>
+          <li>(À remplir) …</li>
+        </ul>
+      </section>
+
+      <footer class="report-footer">
+        <a href="blog.html" class="btn-secondary">← Retour au blog</a>
+        <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
+      </footer>
+
     </section>
 
-    <!-- 3. Réalisations (points + 2–3 photos) -->
-    <section id="achievements" class="section">
-      <h2>3. Réalisations & Moments Forts</h2>
-
-      <!-- Point A -->
-      <article class="point">
-        <header class="point-head">
-          <h3>3.1 Intégration d'équipe</h3>
-          <p class="point-meta">Objectif : découverte et intégration au groupe</p>
-        </header>
-        <div class="point-body">
-          <div class="point-text">
-            <ul class="bullets">
-              <li>Premier contact plutôt réussi.</li>
-              <li>Intégration dans le cercle familial en cours</li>
-              <li>Cercle amical conquis comme un "pacha"</li>
-            </ul>
-          </div>
-          <div class="point-gallery">
-            <figure><img src="fabrikus1.png" alt="fabrikus1"><figcaption>intégration Adèle</figcaption></figure>
-            <figure><img src="grotte.png" alt="grotte"><figcaption>intégration Mimie</figcaption></figure>
-            <figure><img src="potes.png" alt="Détail"><figcaption>le Pacha et les potes ^^</figcaption></figure>
-          </div>
-        </div>
-      </article>
-
-      <!-- Point B -->
-      <article class="point">
-        <header class="point-head">
-          <h3>3.2 le Couple — “Opération Séduction”</h3>
-          <p class="point-meta">Objectif : Bonheur et Plaisir</p>
-        </header>
-        <div class="point-body">
-          <div class="point-text">
-            <ul class="bullets">
-              <li>Entente générale : fluide, fun, sereine.</li>
-              <li>Présentation du couple : Toujours la grande classe. </li>
-              <li>Itimité du couple : Plaisir +++
-            </ul>
-          </div>
-          <div class="point-gallery">
-            <figure><img src="lac2.png" alt="lac"><figcaption>Trop la classe.</figcaption></figure>
-            <figure><img src="lookgrotte.png" alt="lookgrotte"><figcaption>Trop la classe quand même ^^</figcaption></figure>
-            <figure><img src="plage.png" alt="plage"><figcaption>on se comprend ;)</figcaption></figure>             
-          </div>
-        </div>
-      </article>
-
-      <!-- Point C -->
-      <article class="point">
-        <header class="point-head">
-          <h3>3.3 Soirée at Home — “Programme Cosy”</h3>
-          <p class="point-meta">Objectif : détente & proximité</p>
-        </header>
-        <div class="point-body">
-          <div class="point-text">
-            <ul class="bullets">
-              <li>Confort : optimal (setup canapé/TV + super table basse).</li>
-              <li>Programme Jeux régulier : par ce qu'on kiff.</li>
-              <li>compagnie animale : 2 spécimens</li>
-              <li>Indice bonheur : très élevé.</li>
-            </ul>
-          </div>
-          <div class="point-gallery">
-            <figure><img src="canap.png" alt="canap"><figcaption>Ambiance salon</figcaption></figure>
-            <figure><img src="jeux.png" alt="Snack"><figcaption>Soirée jeux</figcaption></figure>
-            <figure><img src="cook2.png" alt="cooky"><figcaption>animal conquis</figcaption></figure>
-          </div>
-        </div>
-      </article>
-    </section>
-
-      <!-- Point D -->
-      <article class="point">
-        <header class="point-head">
-          <h3>3.4 Activité extérieure — “Du Fun du Fun et du Sexe” </h3>
-          <p class="point-meta">Objectif : détente & proximité</p>
-        </header>
-        <div class="point-body">
-          <div class="point-text">
-            <ul class="bullets">
-              <li>Découverte : nouvelle activité et nouveaux lieux.</li>
-              <li>Du Fun Du fun et du Sexe on a dit.</li>
-              <li>Indice bonheur : très élevé.</li>
-            </ul>
-          </div>
-          <div class="point-gallery">
-            <figure><img src="fouille.png" alt="fouille"><figcaption>la chasse aux trésor></figure>
-            <figure><img src="hell.png" alt="hell"><figcaption>Avertissement !</figcaption></figure>
-            <figure><img src="jacouzzi.png" alt="jaccuzzi"><figcaption>lieu secret découvert</figcaption></figure>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- 4. Risques -->
-    <section id="risks" class="section">
-      <h2>4. Risques & Plans d’Action</h2>
-      <div class="risk-grid">
-        <div class="risk">
-          <div class="risk-title">Agenda chargé</div>
-          <div class="risk-level low">Faible</div>
-          <p class="risk-plan">Profiter de chaque moment au maximum.</p>
-        </div>
-        <div class="risk">
-          <div class="risk-title">Météo capricieuse</div>
-          <div class="risk-level med">Moyen à faible</div>
-          <p class="risk-plan">fini les grosses chaleur, bientôt les plaids et l'orage en fond</p>
-        </div>
-        <div class="risk">
-          <div class="risk-title">Ennemis</div>
-          <div class="risk-level low">Très très Faible</div>
-          <p class="risk-plan">C'est toi et moi (+enfants) contre le reste du monde.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Perspectives -->
-    <section id="outlook" class="section">
-      <h2>5. Perspectives T+1</h2>
-      <ul class="bullets">
-        <li>“Projet Normandie” : organisation en cours (on peut mieux faire mais on s'en sort <3 ).</li>
-        <li>“Projet Marathon” : bon Ok c'est 1/10ème d'un marathon, la prochaine fois dit NON ^^.</li>
-        <li>“Projet X” : Adèle et Mimie toujours au rendez-vous!</li>
-      </ul>
-    </section>
-
-    <footer class="report-footer">
-      <a href="blog.html" class="btn-secondary">← Retour au blog</a>
-      <button class="btn" onclick="printPDF()">Imprimer / PDF</button>
-    </footer>
   </div>
 </body>
 </html>

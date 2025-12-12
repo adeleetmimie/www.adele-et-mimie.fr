@@ -279,6 +279,7 @@ button:hover{ background:var(--brand-strong); }
 }
 .risk-level.low{ background:#eff6ff; color:#1e40af; }   /* bleu pâle */
 .risk-level.med{ background:#fff7ed; color:#9a3412; }   /* orange pâle */
+.risk-level.high{ background:#fee2e2; color:#991b1b; }   /* rouge foncé */
 .risk-plan{ color:var(--muted); }
 
 .report-footer{
